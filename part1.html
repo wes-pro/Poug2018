@@ -1,0 +1,999 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<title>part1 slides</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<!-- General and theme style sheets -->
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+    <link rel="stylesheet/less" type="text/css" href="styles.less" />
+
+<!--[if lt IE 9]>
+<script src="reveal.js/lib/js/html5shiv.js"></script>
+<![endif]-->
+
+
+<!-- Loading the mathjax macro -->
+<!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+<!-- Get Font-awesome from cdn -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style type="text/css">
+    .highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+<style type="text/css">
+    
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+
+    </style>
+<style type="text/css">
+    /*This file contains any manual css for this page that needs to override the global styles.
+This is only required when different pages style the same element differently. This is just
+a hack to deal with our current css styles and no new styling should be added in this file.*/
+
+#ipython-main-app {
+    position: relative;
+}
+#jupyter-main-app {
+    position: relative;
+}
+
+    </style>
+
+
+<style type="text/css">
+/* Overrides of notebook CSS for static HTML export */
+.reveal {
+  font-size: 160%;
+}
+.reveal pre {
+  width: inherit;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+.reveal pre code {
+  padding: 0px;
+}
+.reveal section img {
+  border: 0px solid black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+}
+.reveal i {
+  font-style: normal;
+  font-family: FontAwesome;
+  font-size: 2em;
+}
+.reveal .slides {
+  text-align: left;
+  width: 100% !important;
+}
+.reveal.fade {
+  opacity: 1;
+}
+.reveal .progress {
+  position: static;
+}
+.reveal .controls .navigate-left,
+.reveal .controls .navigate-left.enabled {
+  border-right-color: #727272;
+}
+.reveal .controls .navigate-left.enabled:hover,
+.reveal .controls .navigate-left.enabled.enabled:hover {
+  border-right-color: #dfdfdf;
+}
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-right.enabled {
+  border-left-color: #727272;
+}
+.reveal .controls .navigate-right.enabled:hover,
+.reveal .controls .navigate-right.enabled.enabled:hover {
+  border-left-color: #dfdfdf;
+}
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color: #727272;
+}
+.reveal .controls .navigate-up.enabled:hover,
+.reveal .controls .navigate-up.enabled.enabled:hover {
+  border-bottom-color: #dfdfdf;
+}
+.reveal .controls .navigate-down,
+.reveal .controls .navigate-down.enabled {
+  border-top-color: #727272;
+}
+.reveal .controls .navigate-down.enabled:hover,
+.reveal .controls .navigate-down.enabled.enabled:hover {
+  border-top-color: #dfdfdf;
+}
+.reveal .progress span {
+  background: #727272;
+}
+div.input_area {
+  padding: 0.06em;
+}
+div.code_cell {
+  background-color: transparent;
+}
+div.prompt {
+  width: 11ex;
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+  text-align: right;
+}
+div.output_area pre {
+  font-family: monospace, sans-serif;
+  font-size: 80%;
+}
+div.output_prompt {
+  /* 5px right shift to account for margin in parent container */
+  margin: 5px 5px 0 0;
+}
+div.text_cell.rendered .rendered_html {
+  /* The H1 height seems miscalculated, we are just hidding the scrollbar */
+  overflow-y: hidden;
+}
+a.anchor-link {
+  /* There is still an anchor, we are only hidding it */
+  display: none;
+}
+.rendered_html p {
+  text-align: inherit;
+}
+.rendered_html h2,
+.rendered_html h3
+{
+  margin-bottom: 0;
+}
+
+::-webkit-scrollbar
+{
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar *
+{
+  background:transparent;
+}
+::-webkit-scrollbar-thumb
+{
+  background: #727272 !important;
+}
+</style>
+
+<!-- Custom stylesheet, it must be in the same directory as the html file -->
+<link rel="stylesheet" href="part1_static.css">
+
+</head>
+
+
+<body>
+
+
+<div class="reveal">
+<div class="slides">
+<section data-background-image="images/title.png" >
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_title'>
+    <center>
+    <div style='display:inline-block' class='animated hinge infinite delay-2s slower'> Lost </div> 
+        in <font color=#F5811E>Metrics</font>, rescued by 
+        <!--div style='display:inline-block' class='animated pulse2 infinite fast'-->
+            <font color=#F5811E>Pandas</font>
+    </center>
+
+</div>
+<div class='a2t_author'>
+    <font color=#F5811E>Michał Wesołowski</font><br> &lt;_mwesolowski_at_advatech_pl_&gt;
+</div>
+</div>
+</div>
+</div></section><section data-background-image="images/page.png" >
+<div class='a2t_about'>
+    <img src="images/a2t_about_us.svg">
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>about </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>advatech</span>
+</div>
+ <h2 id="Headquarters-in-Wroc&#322;aw">Headquarters in Wroc&#322;aw<a class="anchor-link" href="#Headquarters-in-Wroc&#322;aw">&#182;</a></h2><h3 id="Branches-in-Warszawa,-Pozna&#324;-and-Katowice">Branches in Warszawa, Pozna&#324; and Katowice<a class="anchor-link" href="#Branches-in-Warszawa,-Pozna&#324;-and-Katowice">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Established-in-1998">Established in 1998<a class="anchor-link" href="#Established-in-1998">&#182;</a></h2><h3 id="Yeah,-we-are-celebrating-20th-Anniversary">Yeah, we are celebrating 20th Anniversary<a class="anchor-link" href="#Yeah,-we-are-celebrating-20th-Anniversary">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="People">People<a class="anchor-link" href="#People">&#182;</a></h2><h3 id="Over-90-employees-(50-engineers)">Over 90 employees (50 engineers)<a class="anchor-link" href="#Over-90-employees-(50-engineers)">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Competency-centers">Competency centers<a class="anchor-link" href="#Competency-centers">&#182;</a></h2><h3 id="Cloud,-Infrastructure,-Automation,-Virtualization,">Cloud, Infrastructure, Automation, Virtualization,<a class="anchor-link" href="#Cloud,-Infrastructure,-Automation,-Virtualization,">&#182;</a></h3><h3 id="ITSM-Systems,-IT-Security">ITSM Systems, IT Security<a class="anchor-link" href="#ITSM-Systems,-IT-Security">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<h2 id="More-information-at-http://www.advatech.pl">More information at <a href="http://www.advatech.pl" target="_blank">http://www.advatech.pl</a><a class="anchor-link" href="#More-information-at-http://www.advatech.pl">&#182;</a></h2>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class='a2t_customers' id='a2t_customers'></div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>projects </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>advatech</span>
+</div>
+<div class='a2t_customers'></div>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Grid---CRM-integration-platform-at-BZ-WBK">Data Grid - CRM integration platform at BZ WBK<a class="anchor-link" href="#Data-Grid---CRM-integration-platform-at-BZ-WBK">&#182;</a></h2><h3 id="Based-on-Oracle-Coherence,-Oracle-GoldenGate">Based on Oracle Coherence, Oracle GoldenGate<a class="anchor-link" href="#Based-on-Oracle-Coherence,-Oracle-GoldenGate">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Ivanti-ITSM-implementations">Ivanti ITSM implementations<a class="anchor-link" href="#Ivanti-ITSM-implementations">&#182;</a></h2><h3 id="Poczta-Polska,-GPW,-PWPW,-Santander">Poczta Polska, GPW, PWPW, Santander<a class="anchor-link" href="#Poczta-Polska,-GPW,-PWPW,-Santander">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Database-consolidations">Database consolidations<a class="anchor-link" href="#Database-consolidations">&#182;</a></h2><h3 id="Polkomtel,-financial-sector">Polkomtel, financial sector<a class="anchor-link" href="#Polkomtel,-financial-sector">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Advanced-backup-solutions">Advanced backup solutions<a class="anchor-link" href="#Advanced-backup-solutions">&#182;</a></h2><h3 id="P4,-Alior,-Inea">P4, Alior, Inea<a class="anchor-link" href="#P4,-Alior,-Inea">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="License-consolidations">License consolidations<a class="anchor-link" href="#License-consolidations">&#182;</a></h2><h3 id="Polkomtel,-mBank,-P4,-energy-sector">Polkomtel, mBank, P4, energy sector<a class="anchor-link" href="#Polkomtel,-mBank,-P4,-energy-sector">&#182;</a></h3>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>oracle-team </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>advatech</span>
+</div>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:center">Michał Wesołowski</th>
+<th style="text-align:center">Grzegorz Fus</th>
+<th style="text-align:center">Krzysztof Łojek</th>
+<th style="text-align:center">Jacek Drzycimski and Artur Gromek</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="team/mw.jpeg" alt="team"></td>
+<td style="text-align:center"><img src="team/gf.jpeg" alt="team"></td>
+<td style="text-align:center"><img src="team/kl.jpeg" alt="team"></td>
+<td style="text-align:center"><table><tr>
+    <td style='padding-left:0;'><img src="team/jd.jpeg" alt="team"></td>
+    <td style='padding-right:0;'><img src="team/ag.jpeg" alt="team"></td></tr></table></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>11:00-11:15</strong></td>
+<td style="text-align:center"><strong>13:45-14:00</strong></td>
+<td style="text-align:center"><strong>14:45-15:00</strong></td>
+<td style="text-align:center"><strong>15:45-16:00</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">Even more Pandas examples</td>
+<td style="text-align:center">Advanced backup strategies - real life scenario</td>
+<td style="text-align:center">Enabling Compression</td>
+<td style="text-align:center">The Hitchhiker's Guide to the Oracle Cloud</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><br></p>
+<center> <h3> <div style='display:inline-block' class='animated flip infinite slower'> &#127846; </div> Free ICE CREAM  
+   <div style='display:inline-block' class='animated flip infinite slower'> &#127846; </div> </h3> </center>
+</div>
+</div>
+</div></div></section></section><section data-background-image="images/page.png"><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>about </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>challenge</span>
+</div><h2 id="Consolidate-hundrends-of-databases-on-Oracle-SuperCluster-systems">Consolidate hundrends of databases on Oracle SuperCluster systems<a class="anchor-link" href="#Consolidate-hundrends-of-databases-on-Oracle-SuperCluster-systems">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table style="width:100%"><tr style="background: #fff">
+    <td><div id="a2t_cnt"><div id="a2t_glass"><div id="a2t_water"></div></div></div></td>
+    <td><div id="a2t_cnt"><div id="a2t_glass"><div id="a2t_water" style="animation-delay: 3s"></div></div></div></td>
+    <td><div id="a2t_cnt"><div id="a2t_glass"><div id="a2t_water" style="animation-delay: 1s"></div></div></div></td>
+    <td><div id="a2t_cnt"><div id="a2t_glass"><div id="a2t_water" style="animation-delay: 4s"></div></div></div></td>
+    </tr>
+    </table>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>looking for</span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>possible solutions</span>
+</div><h2 id="Ideal-solution-should-be-able">Ideal solution should be able<a class="anchor-link" href="#Ideal-solution-should-be-able">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="To-have-a--overall-view--on-platform-performance">To have a <font color="#cd5cac"> overall view </font> on platform performance<a class="anchor-link" href="#To-have-a--overall-view--on-platform-performance">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="To-gather-information-about--ALL-running--instances">To gather information about <font color="#cd5cac"> ALL running </font> instances<a class="anchor-link" href="#To-gather-information-about--ALL-running--instances">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="To--keep-track--of-platform-resources-while-progressing-with-migrations">To <font color="#cd5cac"> keep track </font> of platform resources while progressing with migrations<a class="anchor-link" href="#To--keep-track--of-platform-resources-while-progressing-with-migrations">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="To--accumulate-and-visualize--performance-data-from-many-databases-together">To <font color="#cd5cac"> accumulate and visualize </font> performance data from many databases together<a class="anchor-link" href="#To--accumulate-and-visualize--performance-data-from-many-databases-together">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="To--understand-topology---of-the-platform-(e.g.-shared-cpu-pools)">To <font color="#cd5cac"> understand topology </font>  of the platform (e.g. shared cpu pools)<a class="anchor-link" href="#To--understand-topology---of-the-platform-(e.g.-shared-cpu-pools)">&#182;</a></h3>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>cloud control </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>possible solutions</span>
+</div><h2 id="Obvious-answer:-Oracle-Enterprise-Manager">Obvious answer: Oracle Enterprise Manager<a class="anchor-link" href="#Obvious-answer:-Oracle-Enterprise-Manager">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 class="Pros">Pros<a class="anchor-link" href="#Pros">&#182;</a></h2><h3><font color=green>Comprehensive source of performance data</font></h3>
+<h3><font color=green>Capability (limited) to consolidate data from multiple targets (Dynamic Groups or Problem Analysis)</font></h3>
+<h3><font color=green>Live and historical data is available</font></h3>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 class="Cons">Cons<a class="anchor-link" href="#Cons">&#182;</a></h2><h3><font color=red>Not possible to create custom charts without BI Publisher</font></h3>
+<h3><font color=red>Doesn't automatically take hardware topology to create dynamic groups</font></h3>
+<h3><font color=red>Somebody needs to manually add database to monitoring</font></h3>
+
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>bi publisher </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>possible solutions</span>
+</div>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 class="Pros">Pros<a class="anchor-link" href="#Pros">&#182;</a></h2><h3><font color=green>Prepares consolidated reports </font><div style='display:inline-block' class='animated jello infinite fast'>!YEAH!</div></h3>
+<h3><font color=green>There is even Exadata Capacity Planning Report ready for use (but not SuperCluster &#9785;)</font></h3>
+<h3><font color=green>Flexible and highly customizable</font></h3>
+<h3><font color=green>Supports Pivot Tables</font> (later we will see why this might be important)</h3>
+<h3><font color=green>Does not require license when used with EM repository, AWR and AWR Warehouse</font></h3>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 class="Cons">Cons<a class="anchor-link" href="#Cons">&#182;</a></h2><h3><font color=red>Requires <font color=#F5811E>*some*</font> skills (but everything does)&lt;/font&gt;</h3>
+<h3><font color=red>Use of any other data source requires full license</font></h3>
+
+</div>
+</div>
+</div></div></section></section><section data-background-image="images/page.png"><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>open source </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>possible solutions</span>
+</div><h2>Maybe we could <font color=#F5811E>*quickly*</font> create simple tool using open source libraries?</h2>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 class="Pros">Pros<a class="anchor-link" href="#Pros">&#182;</a></h2><h3><font color=green><div style='display:inline-block' class='animated flip infinite slower delay-2s'> SKY is the limit! </div></font></h3>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 class="Cons">Cons<a class="anchor-link" href="#Cons">&#182;</a></h2><h3><font color=red>It might take <font color=#F5811E>*some*</font> skills (but everything does)&lt;/font&gt;</h3>
+<h3><font color=red>It might take <font color=#F5811E>*some*</font> time (but everything does)&lt;/font&gt;</h3>
+
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>our </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>solution</span>
+</div>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+    
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<iframe src='reports/SSC_Report_2018-08-19_sizing_anonymized_en.html' width='100%' height=500>
+</iframe>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class='a2t_heading'>
+    <span class='a2t_heading_p1'>our </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>solution</span> 
+</div> - case #1</p>
+<h2 id="Storage-indexes-and-I/O-numbers-in-AWR">Storage indexes and I/O numbers in AWR<a class="anchor-link" href="#Storage-indexes-and-I/O-numbers-in-AWR">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Occasionally-we-see-I/O-metric-values-going-as-high-as-hundreds-GB/s">Occasionally we see I/O metric values going as high as hundreds GB/s<a class="anchor-link" href="#Occasionally-we-see-I/O-metric-values-going-as-high-as-hundreds-GB/s">&#182;</a></h3><h3 id="Database-is-single-instance,-uses-32kB-block-size">Database is single instance, uses 32kB block size<a class="anchor-link" href="#Database-is-single-instance,-uses-32kB-block-size">&#182;</a></h3><h3 id="Compute-node-has-2-active-Infiniband-ports-(2-x-3.2-GB/s)">Compute node has 2 active Infiniband ports (2 x 3.2 GB/s)<a class="anchor-link" href="#Compute-node-has-2-active-Infiniband-ports-(2-x-3.2-GB/s)">&#182;</a></h3>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="images/charts/storage_index_awr.png" alt="ssc_chart_big"></p>
+
+</div>
+</div>
+</div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="images/charts/storage_index_oem.png" alt="ssc_chart_big"></p>
+
+</div>
+</div>
+</div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class='a2t_heading'>
+    <span class='a2t_heading_p1'>our </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>solution</span> 
+</div> - case #2</p>
+<h2>Wrong results and impact of <font color=#F5811E>*cell passthrough*</font> workaround</h2>
+
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bug-in-Oracle-code-caused-wrong-results-for-some-queries-(bug-in-interval-function)">Bug in Oracle code caused wrong results for some queries (bug in <em>interval</em> function)<a class="anchor-link" href="#Bug-in-Oracle-code-caused-wrong-results-for-some-queries-(bug-in-interval-function)">&#182;</a></h3><h3 id="1st-temporary-workaround:-_kcfis_cell_passthru_enabled=true">1st temporary workaround: <code>_kcfis_cell_passthru_enabled=true</code><a class="anchor-link" href="#1st-temporary-workaround:-_kcfis_cell_passthru_enabled=true">&#182;</a></h3><h3 id="2nd-temporary-workaound:-cell_offload_parameters=&quot;OPT_DISABLED={283,284}&quot;;">2nd temporary workaound: <code>cell_offload_parameters="OPT_DISABLED={283,284}";</code><a class="anchor-link" href="#2nd-temporary-workaound:-cell_offload_parameters=&quot;OPT_DISABLED={283,284}&quot;;">&#182;</a></h3>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="images/charts/cell_passthrough.png" alt="ssc_chart_big"></p>
+
+</div>
+</div>
+</div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class='a2t_heading'>
+    <span class='a2t_heading_p1'>our </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>solution</span> 
+</div> - case #3</p>
+<h2 id="IORM-after-cell-FW-upgrade-from-12.2-to-18.1">IORM after cell FW upgrade from 12.2 to 18.1<a class="anchor-link" href="#IORM-after-cell-FW-upgrade-from-12.2-to-18.1">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="We-observed-occasional-longer-service-times-on-flash-NVMe-in-cells">We observed occasional longer service times on flash NVMe in cells<a class="anchor-link" href="#We-observed-occasional-longer-service-times-on-flash-NVMe-in-cells">&#182;</a></h3><h3 id="We-tried-to-put-limit-on-some-analytics-databases-using-IORM---did-not-as-much-as-we-expected">We tried to put limit on some analytics databases using IORM - did not as much as we expected<a class="anchor-link" href="#We-tried-to-put-limit-on-some-analytics-databases-using-IORM---did-not-as-much-as-we-expected">&#182;</a></h3><h3 id="Does-IORM-limit-clause-affects-Flash-at-all?">Does IORM <code>limit</code> clause affects Flash at all?<a class="anchor-link" href="#Does-IORM-limit-clause-affects-Flash-at-all?">&#182;</a></h3><h3 id="Looks-like-it-does-but-only-since-the-latest-18.1-versions-of-Exadata-Storage-firmwares">Looks like it does but only since the latest 18.1 versions of Exadata Storage firmwares<a class="anchor-link" href="#Looks-like-it-does-but-only-since-the-latest-18.1-versions-of-Exadata-Storage-firmwares">&#182;</a></h3>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="images/charts/smart_cell_fw.png" alt="ssc_chart_big"></p>
+
+</div>
+</div>
+</div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class='a2t_heading'>
+    <span class='a2t_heading_p1'>our </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>solution</span> 
+</div> - Case #4</p>
+<h2 id="Enabling-HCC-on-large-DB">Enabling HCC on large DB<a class="anchor-link" href="#Enabling-HCC-on-large-DB">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="DB-has-files-on-ASM-using-HIGH-REDUNDANCY-template">DB has files on ASM using HIGH REDUNDANCY template<a class="anchor-link" href="#DB-has-files-on-ASM-using-HIGH-REDUNDANCY-template">&#182;</a></h3><h3 id="Total-size-of-datafiles-decreased-by-30TB-(90TB-raw)">Total size of datafiles decreased by 30TB (90TB raw)<a class="anchor-link" href="#Total-size-of-datafiles-decreased-by-30TB-(90TB-raw)">&#182;</a></h3>
+</div>
+</div>
+</div></div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="images/charts/hcc_drop.png" alt="ssc_chart_big"></p>
+
+</div>
+</div>
+</div></section><section data-background-image="images/page.png">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class='a2t_heading'>
+    <span class='a2t_heading_p1'>benefits </span>
+    <img class='a2t_heading' src="images/a2t_wheel.svg">
+    <span>solution</span> 
+</div><h2 id="Unique-benefits">Unique benefits<a class="anchor-link" href="#Unique-benefits">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ability-to-gather-data-from--every-instance--(even-the-ones-without-database-mounted)">Ability to gather data from <font color="#cd5cac"><div class="animated pulse2 infinite fast delay-1s" style="display:inline-block"> every instance </div></font> (even the ones without database mounted)<a class="anchor-link" href="#Ability-to-gather-data-from--every-instance--(even-the-ones-without-database-mounted)">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ability-to-cross-check-ASM-files-with-databases-dictionaries---to-find-orphaned-files">Ability to cross-check ASM files with databases dictionaries - to find <font color="#cd5cac"><div class="animated pulse2 infinite fast delay" style="display:inline-block">orphaned files</div></font><a class="anchor-link" href="#Ability-to-cross-check-ASM-files-with-databases-dictionaries---to-find-orphaned-files">&#182;</a></h3>
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Ability-to-work-with-data-interactively-using-iPython-Jupyter---to-create-ad-hoc-analysis">Ability to <font color="#cd5cac"><div class="animated pulse2 infinite fast delay-2s" style="display:inline-block">work with data interactively</div></font> using iPython Jupyter - to create ad-hoc analysis<a class="anchor-link" href="#Ability-to-work-with-data-interactively-using-iPython-Jupyter---to-create-ad-hoc-analysis">&#182;</a></h3>
+</div>
+</div>
+</div></div></section></section>
+</div>
+</div>
+
+<script>
+
+require(
+    {
+      // it makes sense to wait a little bit when you are loading
+      // reveal from a cdn in a slow connection environment
+      waitSeconds: 15
+    },
+    [
+      "reveal.js/lib/js/head.min.js",
+      "reveal.js/js/reveal.js"
+    ],
+
+    function(head, Reveal){
+
+        // Full list of configuration options available here: https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: false,
+
+            transition: "slide",
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: "reveal.js/lib/js/classList.js",
+                  condition: function() { return !document.body.classList; } },
+                { src: "reveal.js/plugin/notes/notes.js",
+                  async: true,
+                  condition: function() { return !!document.body.classList; } }
+            ]
+        });
+
+        var update = function(event){
+          if(MathJax.Hub.getAllJax(Reveal.getCurrentSlide())){
+            MathJax.Hub.Rerender(Reveal.getCurrentSlide());
+          }
+        };
+
+        Reveal.addEventListener('slidechanged', update);
+
+        function setScrollingSlide() {
+            var scroll = false
+            if (scroll === true) {
+              var h = $('.reveal').height() * 0.95;
+              $('section.present').find('section')
+                .filter(function() {
+                  return $(this).height() > h;
+                })
+                .css('height', 'calc(95vh)')
+                .css('overflow-y', 'scroll')
+                .css('margin-top', '20px');
+            }
+        }
+
+        // check and set the scrolling slide every time the slide change
+        Reveal.addEventListener('slidechanged', setScrollingSlide);
+        
+        
+
+    }
+
+);
+//$.getScript('jquery.svg3dtagcloud.min.js')
+
+</script>
+
+<script src='js/jquery.svg3dtagcloud.min.js'></script>
+<script>
+    var entries = [ 
+    { image: 'img_c/mbank.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/bzwbk.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/pkobp.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/bgk.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/santander.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/generali.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/pzu.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/bps.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/gpw.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/ingservices.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/ing.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/polsat.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/inea.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/play.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/polkomtel.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/energa.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/poczta.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/pwpw.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/alior.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/nbp.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/warta.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/kdpw.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/tvp.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/tvn.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/eurocash.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/raiffeisen.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/lge.png', width: '200', height: '200', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+    { image: 'img_c/pge.png', width: '100', height: '100', url: 'http://www.advatech.pl/klienci.html', target: '_blank' },
+]
+var settings = {
+    entries: entries,
+    width: 700,
+    height: 700,
+    radius: '65%',
+    radiusMin: 75,
+    bgDraw: false,
+    opacityOver: 1.00,
+    opacityOut: 0.05,
+    opacitySpeed: 6,
+    fov: 800,
+    speed: 0.3,
+};
+    $('#a2t_customers').svg3DTagCloud( settings );
+</script>
+</body>
+
+
+</html>

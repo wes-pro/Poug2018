@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="20.607mm" viewBox="0 0 73.017454 73.015601" width="20.607mm" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata7">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <style id="style4" type="text/css"><![CDATA[
+      #wheel {
+        animation: spin 8s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        animation-delay: 5s;
+        transform-origin: 50% 50%;
+        transform-box: fill-box;
+      }
+      #wheel2 {
+        animation: spin2 8s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        animation-delay: 5s;
+        transform-origin: 50% 50%;
+        transform-box: fill-box;
+      }
+      @keyframes spin {
+        0% {transform:rotate(0deg);}
+        30% {transform:rotate(360deg);}
+        100% {transform:rotate(360deg);}
+      }
+      @keyframes spin2 {
+        0% {transform:rotate(360deg);}
+        30% {transform:rotate(0deg);}
+        100% {transform:rotate(0deg);}
+      }
+ ]]></style>
+ <g id="layer1" transform="translate(0 .00088503)">
+  <path id="path4195" fill-rule="evenodd" fill="#002a60" d="m19.167 19.165c-9.6188 9.5481-9.6188 25.275 0 34.824l3.8615-3.791c-7.4421-7.5124-7.4421-19.729 0-27.241 7.5124-7.4421 19.658-7.4421 27.101 0 3.6506 3.6506 5.687 8.4951 5.687 13.55 0 5.1956-2.0361 10.04-5.687 13.691l3.9316 3.791c4.6335-4.6335 7.0908-10.883 7.0908-17.482 0-6.4594-2.4573-12.708-7.0908-17.342-9.6891-9.5481-25.275-9.5481-34.894 0z"/>
+ </g>
+ <g id="wheel" transform="translate(0 .00088503)">
+  <path id="path4193" fill-rule="evenodd" fill="#002a60" d="m10.672 10.67c-6.8811 7.021-10.672 16.078-10.672 25.836 0 9.7589 3.7911 18.956 10.672 25.837 7.021 6.9508 16.078 10.672 25.837 10.672 20.15 0 36.509-16.359 36.509-36.509h-5.3357c0 17.201-13.972 31.173-31.173 31.173-8.2848 0-16.078-3.3001-21.905-9.1275-5.9679-5.828-9.1273-13.69-9.1273-22.046 0-8.2145 3.1593-16.078 9.1275-21.905 5.8306-5.8275 13.624-9.127 21.909-9.127v-5.4762c-9.759 0.0001969-18.816 3.7915-25.837 10.672z"/>
+ </g>
+ <g id="wheel2" transform="translate(0 .00088503)">
+  <path id="path4197" fill-rule="evenodd" fill="#f07c00" d="m36.579 29.556c3.8617 0 7.021 3.1593 7.021 6.9508 0 3.9314-3.1593 7.0908-7.021 7.0908-1.8958 0-3.6511-0.77192-4.9146-2.0357-1.404-1.334-2.176-3.089-2.176-5.055h-5.406c0 3.3701 1.3339 6.5292 3.6506 8.846 2.3873 2.3871 5.4767 3.7215 8.8464 3.7215 6.8805 0 12.497-5.687 12.497-12.567 0-6.8805-5.6167-12.427-12.497-12.427v5.4762z"/>
+ </g>
+</svg>
