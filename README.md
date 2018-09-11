@@ -1,4 +1,4 @@
-# POUG 2018 - Advatech presentation
+# [POUG 2018](http://poug.org/edycja/poug-2018/) - [Advatech](http://advatech.pl) presentation
 ## Lost in Metrics, rescued by Pandas
 
 ### Presentation consists of two parts:
@@ -23,6 +23,8 @@ Second file requires following packages to be fully functional:
   * [cx_Oracle](https://oracle.github.io/python-cx_Oracle/)
   * [%%sql Magic for Oracle](https://github.com/catherinedevlin/ipython-sql)
   * [Plotly](https://plot.ly/)
+  
+My company is here [Advatech](http://advatech.pl)
 
 Enjoy,
 
